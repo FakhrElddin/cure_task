@@ -1,8 +1,9 @@
 import 'package:cure_app/core/utils/app_routes.dart';
 import 'package:cure_app/feature/ui/auth/login/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main(){
+void main() {
   runApp(CureApp());
 }
 
@@ -11,12 +12,17 @@ class CureApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: {
-        AppRoutes.loginRoute : (context) => LoginScreen(),
+    return ScreenUtilInit(
+      designSize: Size(430, 932),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          routes: {AppRoutes.loginRoute: (context) => LoginScreen()},
+          initialRoute: AppRoutes.loginRoute,
+        );
       },
-      initialRoute: AppRoutes.loginRoute,
     );
   }
 }
