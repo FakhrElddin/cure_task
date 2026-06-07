@@ -26,7 +26,7 @@ class CureApp extends StatelessWidget {
             AppRoutes.registerRoute: (context) => RegisterScreen(),
             AppRoutes.homeRoute: (context) => HomeScreen(),
           },
-          initialRoute: AppRoutes.loginRoute,
+          initialRoute: AppRoutes.homeRoute,
         );
       },
     );
