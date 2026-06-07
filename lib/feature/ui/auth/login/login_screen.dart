@@ -1,4 +1,5 @@
 import 'package:cure_app/core/utils/app_colors.dart';
+import 'package:cure_app/core/utils/app_routes.dart';
 import 'package:cure_app/core/utils/app_styles.dart';
 import 'package:cure_app/feature/ui/widgets/custom_text_button.dart';
 import 'package:cure_app/feature/ui/widgets/custom_text_form_field.dart';
@@ -53,7 +54,9 @@ class LoginScreen extends StatelessWidget {
                     style: AppStyles.semiBold16Text,
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, AppRoutes.registerRoute);
+                    },
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.zero,
                     ),
