@@ -1,5 +1,5 @@
-import 'package:cure_app/core/app_routes.dart';
-import 'package:cure_app/feature/auth/login/login_screen.dart';
+import 'package:cure_app/core/utils/app_routes.dart';
+import 'package:cure_app/feature/ui/auth/login/login_screen.dart';
 import 'package:flutter/material.dart';
 
 void main(){
