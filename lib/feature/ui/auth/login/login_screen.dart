@@ -10,7 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
-  GlobalKey<FormState> formKey = GlobalKey();
+  final GlobalKey<FormState> formKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -42,14 +42,16 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(height: 62.h),
                 CustomTextFormField(
                   fieldName: 'Email',
+                  hintText: 'Enter Your Email',
                   keyboardType: TextInputType.emailAddress,
                   validator: AppValidators.validateEmail,
                 ),
                 SizedBox(height: 26.h),
                 CustomTextFormField(
                   fieldName: 'Password',
+                  hintText: 'Enter Your Password',
                   isPassword: true,
-                  validator: AppValidators.validatePassword,
+                  validator: AppValidators.validateFullName,
                 ),
                 SizedBox(height: 16.h),
                 Align(
@@ -63,7 +65,13 @@ class LoginScreen extends StatelessWidget {
                 CustomTextButton(
                   text: 'Sign In',
                   onPressed: () {
-                    if (formKey.currentState!.validate()) {}
+                    if (formKey.currentState!.validate()) {
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        AppRoutes.homeRoute,
+                        (route) => false,
+                      );
+                    }
                   },
                 ),
                 SizedBox(height: 32.h),

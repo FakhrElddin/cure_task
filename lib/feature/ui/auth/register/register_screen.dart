@@ -1,4 +1,5 @@
 import 'package:cure_app/core/utils/app_colors.dart';
+import 'package:cure_app/core/utils/app_routes.dart';
 import 'package:cure_app/core/utils/app_styles.dart';
 import 'package:cure_app/core/utils/app_validators.dart';
 import 'package:cure_app/feature/ui/widgets/custom_text_button.dart';
@@ -29,22 +30,27 @@ class RegisterScreen extends StatelessWidget {
                 SizedBox(height: 37.h),
                 CustomTextFormField(
                   fieldName: 'Full Name',
+                  hintText: 'Enter Your Full Name',
                   validator: AppValidators.validateFullName,
                 ),
                 SizedBox(height: 20.h),
                 CustomTextFormField(
                   fieldName: 'Password',
+                  hintText: 'Enter Your Password',
+                  isPassword: true,
                   validator: AppValidators.validatePassword,
                 ),
                 SizedBox(height: 20.h),
                 CustomTextFormField(
                   fieldName: 'Email',
+                  hintText: 'Enter Your Email',
                   keyboardType: TextInputType.emailAddress,
                   validator: AppValidators.validateEmail,
                 ),
                 SizedBox(height: 20.h),
                 CustomTextFormField(
                   fieldName: 'Mobile Number',
+                  hintText: 'Enter Your Phone Number',
                   keyboardType: TextInputType.number,
                   validator: AppValidators.validatePhoneNumber,
                 ),
@@ -52,7 +58,13 @@ class RegisterScreen extends StatelessWidget {
                 CustomTextButton(
                   text: 'Sign Up',
                   onPressed: () {
-                    if (formKey.currentState!.validate()) {}
+                    if (formKey.currentState!.validate()) {
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        AppRoutes.homeRoute,
+                        (route) => false,
+                      );
+                    }
                   },
                 ),
                 SizedBox(height: 32.h),
