@@ -20,7 +20,7 @@ class CustomTextFormField extends StatefulWidget {
 }
 
 class _CustomTextFormFieldState extends State<CustomTextFormField> {
-  bool obscureText = true;
+  bool obscureText = false;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         Text(widget.fieldName, style: AppStyles.semiBold22Text),
         SizedBox(height: 18.h),
         TextFormField(
-          obscureText: obscureText,
+          obscureText: widget.isPassword ? !obscureText : obscureText,
           obscuringCharacter: '*',
           decoration: InputDecoration(
             fillColor: AppColors.greyColor.withValues(alpha: 0.3),
@@ -39,10 +39,10 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                 ? IconButton(
                     icon: obscureText
                         ? Icon(
-                            Icons.visibility_off,
+                            Icons.visibility,
                             color: AppColors.primaryColor,
                           )
-                        : Icon(Icons.visibility, color: AppColors.primaryColor),
+                        : Icon(Icons.visibility_off, color: AppColors.primaryColor),
                     onPressed: () {
                       setState(() {
                         obscureText = !obscureText;
