@@ -8,6 +8,11 @@ class AppStyles {
     fontWeight: FontWeight.bold,
     color: AppColors.primaryColor,
   );
+  static TextStyle semiBold24Text = GoogleFonts.openSans(
+    fontSize: 24,
+    fontWeight: FontWeight.w600,
+    color: AppColors.blackColor,
+  );
   static TextStyle bold22Text = GoogleFonts.openSans(
     fontSize: 22,
     fontWeight: FontWeight.bold,
@@ -32,5 +37,10 @@ class AppStyles {
     fontSize: 16,
     fontWeight: FontWeight.w600,
     color: AppColors.greyColor,
+  );
+  static TextStyle regular14Text = GoogleFonts.openSans(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: AppColors.primaryColor,
   );
 }

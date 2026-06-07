@@ -12,6 +12,7 @@ class CustomTextFormField extends StatefulWidget {
     this.keyboardType,
     this.validator,
     this.hintText,
+    this.fillColor,
   });
 
   final String fieldName;
@@ -20,6 +21,7 @@ class CustomTextFormField extends StatefulWidget {
   final TextInputType? keyboardType;
   final String? Function(String?)? validator;
   final String? hintText;
+  final Color? fillColor;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -41,7 +43,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           keyboardType: widget.keyboardType,
           validator: widget.validator,
           decoration: InputDecoration(
-            fillColor: AppColors.greyColor.withValues(alpha: 0.3),
+            fillColor: widget.fillColor ?? AppColors.greyColor.withValues(alpha: 0.3),
             filled: true,
             hintText: widget.hintText,
             hintStyle: AppStyles.regular18Text,
