@@ -9,11 +9,15 @@ class CustomTextFormField extends StatefulWidget {
     required this.fieldName,
     this.isPassword = false,
     this.suffixIcon,
+    this.keyboardType,
+    this.validator,
   });
 
   final String fieldName;
   final bool isPassword;
   final Widget? suffixIcon;
+  final TextInputType? keyboardType;
+  final String? Function(String?)? validator;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -32,6 +36,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         TextFormField(
           obscureText: widget.isPassword ? !obscureText : obscureText,
           obscuringCharacter: '*',
+          keyboardType: widget.keyboardType,
+          validator: widget.validator,
           decoration: InputDecoration(
             fillColor: AppColors.greyColor.withValues(alpha: 0.3),
             filled: true,
