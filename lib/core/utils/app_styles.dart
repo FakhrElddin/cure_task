@@ -23,6 +23,11 @@ class AppStyles {
     fontWeight: FontWeight.w600,
     color: AppColors.blackColor,
   );
+  static TextStyle semiBold20Text = GoogleFonts.openSans(
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+    color: AppColors.whiteColor,
+  );
   static TextStyle regular18Text = GoogleFonts.openSans(
     fontSize: 18,
     fontWeight: FontWeight.w400,
@@ -38,9 +43,19 @@ class AppStyles {
     fontWeight: FontWeight.w600,
     color: AppColors.greyColor,
   );
+  static TextStyle regular16Text = GoogleFonts.openSans(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    color: AppColors.whiteColor,
+  );
   static TextStyle regular14Text = GoogleFonts.openSans(
     fontSize: 14,
     fontWeight: FontWeight.w400,
     color: AppColors.primaryColor,
+  );
+  static TextStyle regular12Text = GoogleFonts.openSans(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    color: Color(0xffF4F4F4),
   );
 }
