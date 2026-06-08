@@ -1,5 +1,4 @@
 import 'package:cure_app/core/utils/app_colors.dart';
-import 'package:cure_app/core/utils/app_styles.dart';
 import 'package:cure_app/feature/ui/home/tabs/home_tab/home_tab.dart';
 import 'package:cure_app/feature/ui/home/tabs/profile_tab/profile_tab.dart';
 import 'package:cure_app/feature/ui/home/tabs/second_tab/second_tab.dart';
@@ -26,11 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        title: Text('Home Screen', style: AppStyles.bold26Text),
-      ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         unselectedIconTheme: IconThemeData(

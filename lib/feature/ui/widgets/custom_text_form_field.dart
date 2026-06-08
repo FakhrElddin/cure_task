@@ -9,6 +9,7 @@ class CustomTextFormField extends StatefulWidget {
     required this.fieldName,
     this.isPassword = false,
     this.suffixIcon,
+    this.prefixIcon,
     this.keyboardType,
     this.validator,
     this.hintText,
@@ -18,6 +19,7 @@ class CustomTextFormField extends StatefulWidget {
   final String fieldName;
   final bool isPassword;
   final Widget? suffixIcon;
+  final Widget? prefixIcon;
   final TextInputType? keyboardType;
   final String? Function(String?)? validator;
   final String? hintText;
@@ -47,6 +49,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             filled: true,
             hintText: widget.hintText,
             hintStyle: AppStyles.regular18Text,
+            prefixIcon: widget.prefixIcon,
             suffixIcon: widget.isPassword
                 ? IconButton(
                     icon: obscureText
