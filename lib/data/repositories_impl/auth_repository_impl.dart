@@ -1,4 +1,5 @@
 import 'package:cure_app/core/errors/failures.dart';
+import 'package:cure_app/domain/entities/login_response_entity.dart';
 import 'package:cure_app/domain/entities/register_response_entity.dart';
 import 'package:cure_app/domain/repositories/auth/auth_repository.dart';
 import 'package:cure_app/domain/repositories/data_sources/remote_data_sources/auth_remote_data_source.dart';
@@ -23,6 +24,18 @@ class AuthRepositoryImpl implements AuthRepository {
       email: email,
       password: password,
       phone: phone,
+    );
+    return either.fold((error) => Left(error), (response) => Right(response));
+  }
+
+  @override
+  Future<Either<Failures, LoginResponseEntity>> login({
+    required String email,
+    required String password,
+  }) async{
+    var either = await authRemoteDataSource.login(
+      email: email,
+      password: password,
     );
     return either.fold((error) => Left(error), (response) => Right(response));
   }

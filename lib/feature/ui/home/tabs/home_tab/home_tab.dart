@@ -33,10 +33,7 @@ class HomeTab extends StatelessWidget {
               SizedBox(height: 30.h),
               CustomImageSlideShow(),
               SizedBox(height: 18.h),
-              Text(
-                'Categories',
-                style: AppStyles.semiBold24Text,
-              ),
+              Text('Categories', style: AppStyles.semiBold24Text),
               SizedBox(height: 30.h),
               SizedBox(
                 height: 80.h,
@@ -44,27 +41,21 @@ class HomeTab extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) => Container(
                     height: 80.h,
-                  width: 150.w,
-                  decoration: BoxDecoration(
-                    color: AppColors.primaryColor,
-                    borderRadius: BorderRadius.circular(10.r),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'denteeth',
-                      style: AppStyles.semiBold20Text,
+                    width: 150.w,
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryColor,
+                      borderRadius: BorderRadius.circular(10.r),
+                    ),
+                    child: Center(
+                      child: Text('denteeth', style: AppStyles.semiBold20Text),
                     ),
                   ),
-                ),
-                  separatorBuilder: (context, index) => SizedBox(width: 15,),
+                  separatorBuilder: (context, index) => SizedBox(width: 15),
                   itemCount: 10,
                 ),
               ),
               SizedBox(height: 34.h),
-              Text(
-                'Popular Services',
-                style: AppStyles.semiBold24Text,
-              ),
+              Text('Popular Services', style: AppStyles.semiBold24Text),
               SizedBox(height: 30.h),
               Stack(
                 alignment: Alignment.bottomCenter,
@@ -85,10 +76,7 @@ class HomeTab extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Home Nursing',
-                          style: AppStyles.semiBold18Text,
-                        ),
+                        Text('Home Nursing', style: AppStyles.semiBold18Text),
                         SizedBox(height: 12.h),
                         Text(
                           'Jorem ipsum dolor, consectetur adipiscing elit. Nunc v libero et',
@@ -100,13 +88,16 @@ class HomeTab extends StatelessWidget {
                         ),
                         SizedBox(height: 14.h),
                         ElevatedButton(
-                          onPressed: (){},
+                          onPressed: () {},
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.primaryColor,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(50.r),
                             ),
-                            padding: EdgeInsets.symmetric(vertical: 6.h,horizontal: 22.5),
+                            padding: EdgeInsets.symmetric(
+                              vertical: 6.h,
+                              horizontal: 22.5,
+                            ),
                           ),
                           child: Text('Book', style: AppStyles.regular16Text),
                         ),
