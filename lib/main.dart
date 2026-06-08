@@ -1,3 +1,5 @@
+import 'package:cure_app/core/cache/shared_prefs_utils.dart';
+import 'package:cure_app/core/di/di.dart';
 import 'package:cure_app/core/utils/app_routes.dart';
 import 'package:cure_app/feature/ui/auth/login/login_screen.dart';
 import 'package:cure_app/feature/ui/auth/register/register_screen.dart';
@@ -5,7 +7,10 @@ import 'package:cure_app/feature/ui/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await SharedPrefsUtils.init();
+  configureDependencies();
   runApp(CureApp());
 }
 
@@ -26,7 +31,7 @@ class CureApp extends StatelessWidget {
             AppRoutes.registerRoute: (context) => RegisterScreen(),
             AppRoutes.homeRoute: (context) => HomeScreen(),
           },
-          initialRoute: AppRoutes.homeRoute,
+          initialRoute: AppRoutes.loginRoute,
         );
       },
     );
