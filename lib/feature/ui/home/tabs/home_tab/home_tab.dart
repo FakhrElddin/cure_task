@@ -1,6 +1,7 @@
 import 'package:cure_app/core/di/di.dart';
 import 'package:cure_app/core/utils/app_assets.dart';
 import 'package:cure_app/core/utils/app_colors.dart';
+import 'package:cure_app/core/utils/app_routes.dart';
 import 'package:cure_app/core/utils/app_styles.dart';
 import 'package:cure_app/feature/ui/home/tabs/home_tab/cubit/home_tab_cubit.dart';
 import 'package:cure_app/feature/ui/home/tabs/home_tab/cubit/home_tab_states.dart';
@@ -27,11 +28,14 @@ class HomeTab extends StatelessWidget {
     return BlocBuilder<HomeTabCubit, HomeTabStates>(
       bloc: viewModel..getServices(),
       builder: (context, state) {
-        if(state is HomeTabErrorState){
+        if (state is HomeTabErrorState) {
           return Center(
-            child: Text(state.failure.errorMessage, style: AppStyles.semiBold18Text,),
+            child: Text(
+              state.failure.errorMessage,
+              style: AppStyles.semiBold18Text,
+            ),
           );
-        } else if (state is HomeTabSuccessState){
+        } else if (state is HomeTabSuccessState) {
           return SafeArea(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.0.w),
@@ -49,7 +53,10 @@ class HomeTab extends StatelessWidget {
                           fillColor: AppColors.greyColor.withValues(alpha: 0.2),
                           prefixIcon: Padding(
                             padding: EdgeInsets.only(left: 24.0.h, right: 8.h),
-                            child: Icon(Icons.search, color: AppColors.greyColor),
+                            child: Icon(
+                              Icons.search,
+                              color: AppColors.greyColor,
+                            ),
                           ),
                         ),
                         SizedBox(height: 30.h),
@@ -81,7 +88,10 @@ class HomeTab extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 34.h),
-                        Text('Popular Services', style: AppStyles.semiBold24Text),
+                        Text(
+                          'Popular Services',
+                          style: AppStyles.semiBold24Text,
+                        ),
                         SizedBox(height: 30.h),
                       ],
                     ),
@@ -113,7 +123,9 @@ class HomeTab extends StatelessWidget {
                               ),
                               SizedBox(height: 12.h),
                               Text(
-                                state.servicesResponseEntity[index].description!,
+                                state
+                                    .servicesResponseEntity[index]
+                                    .description!,
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style: AppStyles.regular12Text.copyWith(
@@ -122,7 +134,14 @@ class HomeTab extends StatelessWidget {
                               ),
                               SizedBox(height: 14.h),
                               ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    AppRoutes.serviceDetailsRoute,
+                                    arguments:
+                                        state.servicesResponseEntity[index],
+                                  );
+                                },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: AppColors.primaryColor,
                                   shape: RoundedRectangleBorder(
@@ -134,7 +153,7 @@ class HomeTab extends StatelessWidget {
                                   ),
                                 ),
                                 child: Text(
-                                  'Book',
+                                  'Book for ${state.servicesResponseEntity[index].price} EGP',
                                   style: AppStyles.regular16Text,
                                 ),
                               ),
@@ -145,20 +164,14 @@ class HomeTab extends StatelessWidget {
                     ),
                     separatorBuilder: (context, index) => SizedBox(height: 24),
                   ),
-                  SliverToBoxAdapter(
-                    child: SizedBox(
-                      height: 40.h,
-                    ),
-                  ),
+                  SliverToBoxAdapter(child: SizedBox(height: 40.h)),
                 ],
               ),
             ),
           );
         } else {
           return Center(
-            child: CircularProgressIndicator(
-              color: AppColors.primaryColor,
-            ),
+            child: CircularProgressIndicator(color: AppColors.primaryColor),
           );
         }
       },
