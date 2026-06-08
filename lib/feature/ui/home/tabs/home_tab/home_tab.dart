@@ -10,6 +10,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class HomeTab extends StatelessWidget {
   const HomeTab({super.key});
 
+  final List<String> categories = const[
+    'Nursing',
+    'Elderly Care',
+    'Physiotherapy',
+    'Wound Care',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -47,11 +54,11 @@ class HomeTab extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10.r),
                     ),
                     child: Center(
-                      child: Text('denteeth', style: AppStyles.semiBold20Text),
+                      child: Text(categories[index], style: AppStyles.semiBold20Text),
                     ),
                   ),
                   separatorBuilder: (context, index) => SizedBox(width: 15),
-                  itemCount: 10,
+                  itemCount: categories.length,
                 ),
               ),
               SizedBox(height: 34.h),
