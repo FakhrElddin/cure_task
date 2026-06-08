@@ -1,16 +1,20 @@
+import 'package:cure_app/core/di/di.dart';
 import 'package:cure_app/core/utils/app_assets.dart';
 import 'package:cure_app/core/utils/app_colors.dart';
 import 'package:cure_app/core/utils/app_styles.dart';
+import 'package:cure_app/feature/ui/home/tabs/home_tab/cubit/home_tab_cubit.dart';
+import 'package:cure_app/feature/ui/home/tabs/home_tab/cubit/home_tab_states.dart';
 import 'package:cure_app/feature/ui/widgets/custom_app_bar.dart';
 import 'package:cure_app/feature/ui/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeTab extends StatelessWidget {
   const HomeTab({super.key});
 
-  final List<String> categories = const[
+  final List<String> categories = const [
     'Nursing',
     'Elderly Care',
     'Physiotherapy',
@@ -19,104 +23,145 @@ class HomeTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.0.w),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 20.h),
-              CustomAppBar(),
-              CustomTextFormField(
-                fieldName: '',
-                hintText: 'Search medical services...',
-                fillColor: AppColors.greyColor.withValues(alpha: 0.2),
-                prefixIcon: Padding(
-                  padding: EdgeInsets.only(left: 24.0.h, right: 8.h),
-                  child: Icon(Icons.search, color: AppColors.greyColor),
-                ),
-              ),
-              SizedBox(height: 30.h),
-              CustomImageSlideShow(),
-              SizedBox(height: 18.h),
-              Text('Categories', style: AppStyles.semiBold24Text),
-              SizedBox(height: 30.h),
-              SizedBox(
-                height: 80.h,
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) => Container(
-                    height: 80.h,
-                    width: 150.w,
-                    decoration: BoxDecoration(
-                      color: AppColors.primaryColor,
-                      borderRadius: BorderRadius.circular(10.r),
-                    ),
-                    child: Center(
-                      child: Text(categories[index], style: AppStyles.semiBold20Text),
-                    ),
-                  ),
-                  separatorBuilder: (context, index) => SizedBox(width: 15),
-                  itemCount: categories.length,
-                ),
-              ),
-              SizedBox(height: 34.h),
-              Text('Popular Services', style: AppStyles.semiBold24Text),
-              SizedBox(height: 30.h),
-              Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10.r),
-                    child: Image.asset(
-                      height: 162.h,
-                      width: double.infinity,
-                      AppAssets.servicesImage,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Positioned(
-                    top: 26.h,
-                    left: 177.w,
-                    right: 16.w,
+    HomeTabCubit viewModel = getIt<HomeTabCubit>();
+    return BlocBuilder<HomeTabCubit, HomeTabStates>(
+      bloc: viewModel..getServices(),
+      builder: (context, state) {
+        if(state is HomeTabErrorState){
+          return Center(
+            child: Text(state.failure.errorMessage, style: AppStyles.semiBold18Text,),
+          );
+        } else if (state is HomeTabSuccessState){
+          return SafeArea(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24.0.w),
+              child: CustomScrollView(
+                slivers: [
+                  SliverToBoxAdapter(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Home Nursing', style: AppStyles.semiBold18Text),
-                        SizedBox(height: 12.h),
-                        Text(
-                          'Jorem ipsum dolor, consectetur adipiscing elit. Nunc v libero et',
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: AppStyles.regular12Text.copyWith(
-                            color: AppColors.greyColor,
+                        SizedBox(height: 20.h),
+                        CustomAppBar(),
+                        CustomTextFormField(
+                          fieldName: '',
+                          hintText: 'Search medical services...',
+                          fillColor: AppColors.greyColor.withValues(alpha: 0.2),
+                          prefixIcon: Padding(
+                            padding: EdgeInsets.only(left: 24.0.h, right: 8.h),
+                            child: Icon(Icons.search, color: AppColors.greyColor),
                           ),
                         ),
-                        SizedBox(height: 14.h),
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.primaryColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50.r),
+                        SizedBox(height: 30.h),
+                        CustomImageSlideShow(),
+                        SizedBox(height: 18.h),
+                        Text('Categories', style: AppStyles.semiBold24Text),
+                        SizedBox(height: 30.h),
+                        SizedBox(
+                          height: 80.h,
+                          child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) => Container(
+                              height: 80.h,
+                              width: 150.w,
+                              decoration: BoxDecoration(
+                                color: AppColors.primaryColor,
+                                borderRadius: BorderRadius.circular(10.r),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  categories[index],
+                                  style: AppStyles.semiBold20Text,
+                                ),
+                              ),
                             ),
-                            padding: EdgeInsets.symmetric(
-                              vertical: 6.h,
-                              horizontal: 22.5,
-                            ),
+                            separatorBuilder: (context, index) =>
+                                SizedBox(width: 15),
+                            itemCount: categories.length,
                           ),
-                          child: Text('Book', style: AppStyles.regular16Text),
+                        ),
+                        SizedBox(height: 34.h),
+                        Text('Popular Services', style: AppStyles.semiBold24Text),
+                        SizedBox(height: 30.h),
+                      ],
+                    ),
+                  ),
+                  SliverList.separated(
+                    itemCount: state.servicesResponseEntity.length,
+                    itemBuilder: (context, index) => Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10.r),
+                          child: Image.asset(
+                            height: 162.h,
+                            width: double.infinity,
+                            AppAssets.servicesImage,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Positioned(
+                          top: 26.h,
+                          left: 177.w,
+                          right: 16.w,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                state.servicesResponseEntity[index].name!,
+                                style: AppStyles.semiBold18Text,
+                              ),
+                              SizedBox(height: 12.h),
+                              Text(
+                                state.servicesResponseEntity[index].description!,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: AppStyles.regular12Text.copyWith(
+                                  color: AppColors.greyColor,
+                                ),
+                              ),
+                              SizedBox(height: 14.h),
+                              ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: AppColors.primaryColor,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50.r),
+                                  ),
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: 6.h,
+                                    horizontal: 22.5,
+                                  ),
+                                ),
+                                child: Text(
+                                  'Book',
+                                  style: AppStyles.regular16Text,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
+                    ),
+                    separatorBuilder: (context, index) => SizedBox(height: 24),
+                  ),
+                  SliverToBoxAdapter(
+                    child: SizedBox(
+                      height: 40.h,
                     ),
                   ),
                 ],
               ),
-            ],
-          ),
-        ),
-      ),
+            ),
+          );
+        } else {
+          return Center(
+            child: CircularProgressIndicator(
+              color: AppColors.primaryColor,
+            ),
+          );
+        }
+      },
     );
   }
 }

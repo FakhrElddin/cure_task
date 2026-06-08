@@ -7,6 +7,7 @@ class ServicesResponseDM extends ServicesResponseEntity {
     super.price,
     super.icon,
     super.createdAt,
+    super.description,
   });
 
   ServicesResponseDM.fromJson(dynamic json) {
@@ -15,5 +16,6 @@ class ServicesResponseDM extends ServicesResponseEntity {
     price = json['price'];
     icon = json['icon'];
     createdAt = json['createdAt'];
+    description = json['description'];
   }
 }
