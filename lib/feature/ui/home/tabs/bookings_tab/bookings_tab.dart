@@ -58,11 +58,16 @@ class BookingsTab extends StatelessWidget {
                                   SizedBox(height: 4.h),
                                   Text(
                                     state.bookings[index].clinicalRemarks ?? '',
-                                    style: AppStyles.semiBold16Text.copyWith(
-                                      color: AppColors.greyColor,
-                                    ),
+                                    style: AppStyles.semiBold16Text,
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
+                                  ),
+                                  SizedBox(height: 4.h),
+                                  Text(
+                                    '${state.bookings[index].date} - ${state.bookings[index].time}',
+                                    style: AppStyles.semiBold16Text.copyWith(
+                                      color: AppColors.primaryColor,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -71,7 +76,7 @@ class BookingsTab extends StatelessWidget {
                             Column(
                               children: [
                                 Text('${state.bookings[index].servicePrice} EGP', style: AppStyles.semiBold18Text),
-                                SizedBox(height: 6.h),
+                                SizedBox(height: 10.h),
                                 Container(
                                   decoration: BoxDecoration(
                                     color: AppColors.primaryColor,
