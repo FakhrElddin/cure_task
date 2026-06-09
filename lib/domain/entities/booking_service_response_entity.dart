@@ -8,7 +8,9 @@ class BookingServiceResponseEntity {
       this.time, 
       this.serviceName, 
       this.address, 
-      this.id,});
+      this.id,
+      this.servicePrice,
+  });
 
   String? createdAt;
   String? serviceId;
@@ -19,5 +21,6 @@ class BookingServiceResponseEntity {
   String? serviceName;
   String? address;
   String? id;
+  String? servicePrice;
 
 }

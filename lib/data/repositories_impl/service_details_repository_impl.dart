@@ -19,6 +19,7 @@ class ServiceDetailsRepositoryImpl implements ServiceDetailsRepository {
     required String address,
     required String date,
     required String time,
+    required String servicePrice,
   }) async {
     var either = await serviceDetailsRemoteDataSource.bookingService(
       serviceId: serviceId,
@@ -27,6 +28,7 @@ class ServiceDetailsRepositoryImpl implements ServiceDetailsRepository {
       address: address,
       date: date,
       time: time,
+      servicePrice: servicePrice,
     );
     return either.fold((error) => Left(error), (response) => Right(response));
   }

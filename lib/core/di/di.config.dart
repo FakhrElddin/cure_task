@@ -33,11 +33,14 @@ import '../../domain/repositories/home/home_repository.dart' as _i22;
 import '../../domain/repositories/service_details/service_details_repository.dart'
     as _i45;
 import '../../domain/use_cases/booking_service_use_case.dart' as _i921;
+import '../../domain/use_cases/get_bookings_use_case.dart' as _i164;
 import '../../domain/use_cases/get_services_use_case.dart' as _i333;
 import '../../domain/use_cases/login_use_case.dart' as _i471;
 import '../../domain/use_cases/register_use_case.dart' as _i479;
 import '../../feature/ui/auth/login/cubit/login_cubit.dart' as _i616;
 import '../../feature/ui/auth/register/cubit/register_cubit.dart' as _i914;
+import '../../feature/ui/home/tabs/bookings_tab/cubit/bookings_tab_cubit.dart'
+    as _i1022;
 import '../../feature/ui/home/tabs/home_tab/cubit/home_tab_cubit.dart' as _i104;
 import '../../feature/ui/service_details/cubit/service_details_cubit.dart'
     as _i421;
@@ -83,6 +86,9 @@ extension GetItInjectableX on _i174.GetIt {
         authRemoteDataSource: gh<_i327.AuthRemoteDataSource>(),
       ),
     );
+    gh.factory<_i164.GetBookingsUseCase>(
+      () => _i164.GetBookingsUseCase(homeRepository: gh<_i22.HomeRepository>()),
+    );
     gh.factory<_i333.GetServicesUseCase>(
       () => _i333.GetServicesUseCase(homeRepository: gh<_i22.HomeRepository>()),
     );
@@ -95,6 +101,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i421.ServiceDetailsCubit>(
       () => _i421.ServiceDetailsCubit(
         bookingServiceUseCase: gh<_i921.BookingServiceUseCase>(),
+      ),
+    );
+    gh.factory<_i1022.BookingsTabCubit>(
+      () => _i1022.BookingsTabCubit(
+        getBookingsUseCase: gh<_i164.GetBookingsUseCase>(),
       ),
     );
     gh.factory<_i616.LoginCubit>(

@@ -20,6 +20,7 @@ class ServiceDetailsRemoteDataSourceImpl implements ServiceDetailsRemoteDataSour
     required String address,
     required String date,
     required String time,
+    required String servicePrice,
   }) async{
     try {
       final List<ConnectivityResult> connectivityResult = await Connectivity()
@@ -36,7 +37,8 @@ class ServiceDetailsRemoteDataSourceImpl implements ServiceDetailsRemoteDataSour
             "address": address,
             "date": date,
             "time": time,
-            "status": "pending"
+            "status": "pending",
+            "servicePrice": servicePrice,
           },
         );
         if(response.data is Map<String, dynamic>){

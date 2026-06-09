@@ -17,6 +17,7 @@ class BookingServiceUseCase {
     required String address,
     required String date,
     required String time,
+    required String servicePrice,
   }) {
     return serviceDetailsRepository.bookingService(
       serviceId: serviceId,
@@ -25,6 +26,7 @@ class BookingServiceUseCase {
       address: address,
       date: date,
       time: time,
+      servicePrice: servicePrice,
     );
   }
 }

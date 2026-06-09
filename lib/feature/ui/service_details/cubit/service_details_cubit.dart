@@ -19,6 +19,7 @@ class ServiceDetailsCubit extends Cubit<ServiceDetailsStates> {
   void bookService({
     required String serviceId,
     required String serviceName,
+    required String servicePrice,
   }) async {
     if (formKey.currentState!.validate()) {
       emit(ServiceDetailsLoadingStates());
@@ -36,6 +37,7 @@ class ServiceDetailsCubit extends Cubit<ServiceDetailsStates> {
           address: addressController.text,
           date: selectedDate!,
           time: selectedTime!,
+          servicePrice: servicePrice,
         );
         either.fold(
           (failure) => emit(ServiceDetailsErrorStates(failure: failure)),

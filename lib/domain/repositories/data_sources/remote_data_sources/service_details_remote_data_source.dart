@@ -10,5 +10,6 @@ abstract class ServiceDetailsRemoteDataSource {
     required String address,
     required String date,
     required String time,
+    required String servicePrice,
   });
 }

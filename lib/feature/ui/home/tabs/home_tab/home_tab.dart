@@ -13,7 +13,7 @@ import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeTab extends StatelessWidget {
-  const HomeTab({super.key});
+  HomeTab({super.key});
 
   final List<String> categories = const [
     'Nursing',
@@ -21,12 +21,12 @@ class HomeTab extends StatelessWidget {
     'Physiotherapy',
     'Wound Care',
   ];
-
+  HomeTabCubit viewModel = getIt<HomeTabCubit>()..getServices();
   @override
   Widget build(BuildContext context) {
-    HomeTabCubit viewModel = getIt<HomeTabCubit>();
+
     return BlocBuilder<HomeTabCubit, HomeTabStates>(
-      bloc: viewModel..getServices(),
+      bloc: viewModel,
       builder: (context, state) {
         if (state is HomeTabErrorState) {
           return Center(

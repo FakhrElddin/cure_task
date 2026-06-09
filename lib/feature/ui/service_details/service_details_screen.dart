@@ -6,6 +6,7 @@ import 'package:cure_app/core/utils/app_styles.dart';
 import 'package:cure_app/core/utils/app_validators.dart';
 import 'package:cure_app/core/utils/dialog_utils.dart';
 import 'package:cure_app/domain/entities/services_response_entity.dart';
+import 'package:cure_app/feature/ui/home/tabs/bookings_tab/cubit/bookings_tab_cubit.dart';
 import 'package:cure_app/feature/ui/service_details/cubit/service_details_cubit.dart';
 import 'package:cure_app/feature/ui/service_details/cubit/service_details_states.dart';
 import 'package:cure_app/feature/ui/widgets/custom_text_button.dart';
@@ -50,6 +51,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
             title: 'SUCCESS',
             posActionName: 'OK',
             posAction: () {
+              getIt<BookingsTabCubit>().getBookings();
               Navigator.pushNamedAndRemoveUntil(
                 context,
                 AppRoutes.homeRoute,
@@ -186,6 +188,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                       viewModel.bookService(
                         serviceId: args.id.toString(),
                         serviceName: args.name!,
+                        servicePrice: args.price.toString(),
                       );
                     },
                   ),

@@ -11,6 +11,7 @@ class BookingServiceResponseDM extends BookingServiceResponseEntity {
     super.serviceName,
     super.address,
     super.id,
+    super.servicePrice,
   });
 
   BookingServiceResponseDM.fromJson(dynamic json) {
@@ -23,5 +24,6 @@ class BookingServiceResponseDM extends BookingServiceResponseEntity {
     serviceName = json['serviceName'];
     address = json['address'];
     id = json['id'];
+    servicePrice = json['servicePrice'];
   }
 }
