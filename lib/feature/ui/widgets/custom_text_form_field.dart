@@ -15,7 +15,7 @@ class CustomTextFormField extends StatefulWidget {
     this.hintText,
     this.fillColor,
     this.controller,
-    this.maxLines,
+    this.maxLines = 1,
   });
 
   final String fieldName;
