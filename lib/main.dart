@@ -1,5 +1,7 @@
+import 'package:bloc/bloc.dart';
 import 'package:cure_app/core/cache/shared_prefs_utils.dart';
 import 'package:cure_app/core/di/di.dart';
+import 'package:cure_app/core/my_bloc_observer/my_bloc_observer.dart';
 import 'package:cure_app/core/utils/app_constants.dart';
 import 'package:cure_app/core/utils/app_routes.dart';
 import 'package:cure_app/feature/ui/auth/login/login_screen.dart';
@@ -13,6 +15,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPrefsUtils.init();
   configureDependencies();
+  Bloc.observer = MyBlocObserver();
   var token = SharedPrefsUtils.getData(key: AppConstants.userToken);
   runApp(CureApp(isTokenSaved: token != null ? true : false));
 }

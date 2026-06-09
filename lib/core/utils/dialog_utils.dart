@@ -34,6 +34,7 @@ class DialogUtils {
   static void showMessage({
     required BuildContext context,
     required String message,
+    bool barrierDismissible = true,
     String? title,
     String? posActionName,
     Function? posAction,
@@ -66,6 +67,7 @@ class DialogUtils {
     }
     showDialog(
       context: context,
+      barrierDismissible: barrierDismissible,
       builder: (context) {
         return AlertDialog(
           content: Text(message, style: AppStyles.semiBold18Text),
