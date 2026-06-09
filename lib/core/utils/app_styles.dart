@@ -58,4 +58,9 @@ class AppStyles {
     fontWeight: FontWeight.w400,
     color: Color(0xffF4F4F4),
   );
+  static TextStyle bold12Text = GoogleFonts.openSans(
+    fontSize: 12,
+    fontWeight: FontWeight.bold,
+    color: AppColors.greyColor,
+  );
 }

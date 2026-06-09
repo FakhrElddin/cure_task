@@ -50,7 +50,7 @@ class ProfileTab extends StatelessWidget {
             SliverList.separated(
               itemCount: profileItems.length,
               itemBuilder: (context, index) => profileItems[index],
-              separatorBuilder: (context, index) => SizedBox(height: 16),
+              separatorBuilder: (context, index) => SizedBox(height: 24.h),
             ),
             SliverToBoxAdapter(child: SizedBox(height: 40.h)),
             SliverToBoxAdapter(
@@ -104,7 +104,6 @@ class BuildProfileItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 16.h),
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
       decoration: BoxDecoration(
         color: AppColors.greyColor.withValues(alpha: 0.2),
