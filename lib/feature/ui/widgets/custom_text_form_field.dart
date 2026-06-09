@@ -14,7 +14,8 @@ class CustomTextFormField extends StatefulWidget {
     this.validator,
     this.hintText,
     this.fillColor,
-    this.controller
+    this.controller,
+    this.maxLines,
   });
 
   final String fieldName;
@@ -26,6 +27,7 @@ class CustomTextFormField extends StatefulWidget {
   final String? hintText;
   final Color? fillColor;
   final TextEditingController? controller;
+  final int? maxLines;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -42,6 +44,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         Text(widget.fieldName, style: AppStyles.semiBold22Text),
         SizedBox(height: 18.h),
         TextFormField(
+          maxLines: widget.maxLines,
           controller: widget.controller,
           obscureText: widget.isPassword ? !obscureText : obscureText,
           obscuringCharacter: '*',
