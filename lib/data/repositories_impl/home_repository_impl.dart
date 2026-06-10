@@ -26,9 +26,11 @@ class HomeRepositoryImpl implements HomeRepository {
         connectivityResult.contains(ConnectivityResult.wifi)) {
       var either = await homeRemoteDataSource.getServices();
       return either.fold((error) => Left(error), (response) {
-        homeOfflineDataSource.saveServicesOffline(servicesResponseEntityList: response);
+        homeOfflineDataSource.saveServicesOffline(
+          servicesResponseEntityList: response,
+        );
         return Right(response);
-      } );
+      });
     } else {
       var either = await homeOfflineDataSource.getServicesFromCache();
       return either.fold((error) => Left(error), (response) => Right(response));
@@ -38,13 +40,26 @@ class HomeRepositoryImpl implements HomeRepository {
   @override
   Future<Either<Failures, List<BookingServiceResponseEntity>>>
   getBookings() async {
-    var either = await homeRemoteDataSource.getBookings();
-    return either.fold((error) => Left(error), (response) => Right(response));
+    final List<ConnectivityResult> connectivityResult = await Connectivity()
+        .checkConnectivity();
+    if (connectivityResult.contains(ConnectivityResult.mobile) ||
+        connectivityResult.contains(ConnectivityResult.wifi)) {
+      var either = await homeRemoteDataSource.getBookings();
+      return either.fold((error) => Left(error), (response) {
+        homeOfflineDataSource.saveBookingsOffline(
+          bookingsResponseEntityList: response,
+        );
+        return Right(response);
+      });
+    } else {
+      var either = await homeOfflineDataSource.getBookingsFromCache();
+      return either.fold((error) => Left(error), (response) => Right(response));
+    }
   }
 
   @override
   Future<Either<Failures, List<ServicesResponseEntity>>>
-  getServicesFromCache() async{
+  getServicesFromCache() async {
     var either = await homeOfflineDataSource.getServicesFromCache();
     return either.fold((error) => Left(error), (response) => Right(response));
   }
@@ -53,6 +68,24 @@ class HomeRepositoryImpl implements HomeRepository {
   void saveServicesOffline({
     required List<ServicesResponseEntity> servicesResponseEntityList,
   }) {
-    homeOfflineDataSource.saveServicesOffline(servicesResponseEntityList: servicesResponseEntityList);
+    homeOfflineDataSource.saveServicesOffline(
+      servicesResponseEntityList: servicesResponseEntityList,
+    );
+  }
+
+  @override
+  Future<Either<Failures, List<BookingServiceResponseEntity>>>
+  getBookingsFromCache() async {
+    var either = await homeOfflineDataSource.getBookingsFromCache();
+    return either.fold((error) => Left(error), (response) => Right(response));
+  }
+
+  @override
+  void saveBookingsOffline({
+    required List<BookingServiceResponseEntity> bookingsResponseEntityList,
+  }) {
+    homeOfflineDataSource.saveBookingsOffline(
+      bookingsResponseEntityList: bookingsResponseEntityList,
+    );
   }
 }

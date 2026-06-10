@@ -13,4 +13,10 @@ abstract class HomeRepository {
   void saveServicesOffline({
     required List<ServicesResponseEntity> servicesResponseEntityList,
   });
+
+  Future<Either<Failures, List<BookingServiceResponseEntity>>> getBookingsFromCache();
+
+  void saveBookingsOffline({
+    required List<BookingServiceResponseEntity> bookingsResponseEntityList,
+  });
 }

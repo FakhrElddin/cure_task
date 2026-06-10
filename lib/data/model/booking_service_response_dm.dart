@@ -26,4 +26,19 @@ class BookingServiceResponseDM extends BookingServiceResponseEntity {
     id = json['id'];
     servicePrice = json['servicePrice'];
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['createdAt'] = super.createdAt;
+    data['serviceId'] = super.serviceId;
+    data['serviceName'] = super.serviceName;
+    data['servicePrice'] = super.servicePrice;
+    data['clinicalRemarks'] = super.clinicalRemarks;
+    data['address'] = super.address;
+    data['date'] = super.date;
+    data['time'] = super.time;
+    data['status'] = super.status;
+    data['id'] = super.id;
+    return data;
+  }
 }
