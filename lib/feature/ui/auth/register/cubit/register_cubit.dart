@@ -9,10 +9,10 @@ class RegisterCubit extends Cubit<RegisterStates> {
   RegisterCubit({required this.registerUseCase}) : super(RegisterInitState());
   RegisterUseCase registerUseCase;
   final GlobalKey<FormState> formKey = GlobalKey();
-  TextEditingController nameController = TextEditingController(text: 'conas');
-  TextEditingController emailController = TextEditingController(text: 'conas@nuitx.com');
-  TextEditingController passwordController = TextEditingController(text: 'Ahmed@123');
-  TextEditingController phoneController = TextEditingController(text: '01010700701');
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
 
   void register() async {
     if (formKey.currentState!.validate()) {

@@ -34,6 +34,17 @@ class BookingsTab extends StatelessWidget {
                     child: Text('Your Bookings', style: AppStyles.semiBold24Text),
                   ),
                   SliverToBoxAdapter(child: SizedBox(height: 16.h)),
+                  if(state.bookings.isEmpty)
+                    SliverFillRemaining(
+                      hasScrollBody: false,
+                      child: Center(
+                        child: Text(
+                          'No Bookings Yet, Go To Services To Book Your Service',
+                          style: AppStyles.semiBold18Text,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
                   SliverList.separated(
                     itemBuilder: (context, index) =>
                         Row(
