@@ -18,4 +18,16 @@ class ServicesResponseDM extends ServicesResponseEntity {
     createdAt = json['createdAt'];
     description = json['description'];
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = super.id;
+    data['name'] = super.name;
+    data['price'] = super.price;
+    data['icon'] = super.icon;
+    data['description'] = super.description;
+    data['createdAt'] = super.createdAt;
+    return data;
+  }
+
 }

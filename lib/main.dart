@@ -10,9 +10,13 @@ import 'package:cure_app/feature/ui/home/home_screen.dart';
 import 'package:cure_app/feature/ui/service_details/service_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final directory = await getApplicationDocumentsDirectory();
+  Hive.init(directory.path);
   await SharedPrefsUtils.init();
   configureDependencies();
   Bloc.observer = MyBlocObserver();

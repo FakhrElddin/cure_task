@@ -20,6 +20,7 @@ class BookingsTab extends StatelessWidget {
             child: Text(
               state.failure.errorMessage,
               style: AppStyles.semiBold18Text,
+              textAlign: TextAlign.center,
             ),
           );
         } else if (state is BookingsTabSuccessState) {

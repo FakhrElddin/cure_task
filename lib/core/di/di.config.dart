@@ -12,6 +12,8 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../data/data_sources_impl/offline_data_sources/home_offline_data_source_impl.dart'
+    as _i649;
 import '../../data/data_sources_impl/remote_data_sources/auth_remote_data_source_impl.dart'
     as _i159;
 import '../../data/data_sources_impl/remote_data_sources/home_remote_data_source_impl.dart'
@@ -23,6 +25,8 @@ import '../../data/repositories_impl/home_repository_impl.dart' as _i320;
 import '../../data/repositories_impl/service_details_repository_impl.dart'
     as _i158;
 import '../../domain/repositories/auth/auth_repository.dart' as _i660;
+import '../../domain/repositories/data_sources/offline_data_sources/home_offline_data_source.dart'
+    as _i110;
 import '../../domain/repositories/data_sources/remote_data_sources/auth_remote_data_source.dart'
     as _i327;
 import '../../domain/repositories/data_sources/remote_data_sources/home_remote_data_source.dart'
@@ -62,6 +66,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i327.AuthRemoteDataSource>(
       () => _i159.AuthRemoteDataSourceImpl(apiManager: gh<_i1047.ApiManager>()),
     );
+    gh.factory<_i110.HomeOfflineDataSource>(
+      () => _i649.HomeOfflineDataSourceImpl(),
+    );
     gh.factory<_i923.HomeRemoteDataSource>(
       () => _i571.HomeRemoteDataSourceImpl(apiManager: gh<_i1047.ApiManager>()),
     );
@@ -74,7 +81,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i22.HomeRepository>(
       () => _i320.HomeRepositoryImpl(
         homeRemoteDataSource: gh<_i923.HomeRemoteDataSource>(),
+        homeOfflineDataSource: gh<_i110.HomeOfflineDataSource>(),
       ),
+    );
+    gh.factory<_i164.GetBookingsUseCase>(
+      () => _i164.GetBookingsUseCase(homeRepository: gh<_i22.HomeRepository>()),
+    );
+    gh.factory<_i333.GetServicesUseCase>(
+      () => _i333.GetServicesUseCase(homeRepository: gh<_i22.HomeRepository>()),
     );
     gh.factory<_i921.BookingServiceUseCase>(
       () => _i921.BookingServiceUseCase(
@@ -86,11 +100,15 @@ extension GetItInjectableX on _i174.GetIt {
         authRemoteDataSource: gh<_i327.AuthRemoteDataSource>(),
       ),
     );
-    gh.factory<_i164.GetBookingsUseCase>(
-      () => _i164.GetBookingsUseCase(homeRepository: gh<_i22.HomeRepository>()),
+    gh.factory<_i1022.BookingsTabCubit>(
+      () => _i1022.BookingsTabCubit(
+        getBookingsUseCase: gh<_i164.GetBookingsUseCase>(),
+      ),
     );
-    gh.factory<_i333.GetServicesUseCase>(
-      () => _i333.GetServicesUseCase(homeRepository: gh<_i22.HomeRepository>()),
+    gh.factory<_i104.HomeTabCubit>(
+      () => _i104.HomeTabCubit(
+        getServicesUseCase: gh<_i333.GetServicesUseCase>(),
+      ),
     );
     gh.factory<_i471.LoginUseCase>(
       () => _i471.LoginUseCase(authRepository: gh<_i660.AuthRepository>()),
@@ -103,21 +121,11 @@ extension GetItInjectableX on _i174.GetIt {
         bookingServiceUseCase: gh<_i921.BookingServiceUseCase>(),
       ),
     );
-    gh.factory<_i1022.BookingsTabCubit>(
-      () => _i1022.BookingsTabCubit(
-        getBookingsUseCase: gh<_i164.GetBookingsUseCase>(),
-      ),
-    );
     gh.factory<_i616.LoginCubit>(
       () => _i616.LoginCubit(loginUseCase: gh<_i471.LoginUseCase>()),
     );
     gh.factory<_i914.RegisterCubit>(
       () => _i914.RegisterCubit(registerUseCase: gh<_i479.RegisterUseCase>()),
-    );
-    gh.factory<_i104.HomeTabCubit>(
-      () => _i104.HomeTabCubit(
-        getServicesUseCase: gh<_i333.GetServicesUseCase>(),
-      ),
     );
     return this;
   }
