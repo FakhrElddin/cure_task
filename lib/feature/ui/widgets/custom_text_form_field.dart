@@ -9,19 +9,25 @@ class CustomTextFormField extends StatefulWidget {
     required this.fieldName,
     this.isPassword = false,
     this.suffixIcon,
+    this.prefixIcon,
     this.keyboardType,
     this.validator,
     this.hintText,
     this.fillColor,
+    this.controller,
+    this.maxLines = 1,
   });
 
   final String fieldName;
   final bool isPassword;
   final Widget? suffixIcon;
+  final Widget? prefixIcon;
   final TextInputType? keyboardType;
   final String? Function(String?)? validator;
   final String? hintText;
   final Color? fillColor;
+  final TextEditingController? controller;
+  final int? maxLines;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -38,6 +44,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         Text(widget.fieldName, style: AppStyles.semiBold22Text),
         SizedBox(height: 18.h),
         TextFormField(
+          maxLines: widget.maxLines,
+          controller: widget.controller,
           obscureText: widget.isPassword ? !obscureText : obscureText,
           obscuringCharacter: '*',
           keyboardType: widget.keyboardType,
@@ -47,6 +55,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             filled: true,
             hintText: widget.hintText,
             hintStyle: AppStyles.regular18Text,
+            prefixIcon: widget.prefixIcon,
             suffixIcon: widget.isPassword
                 ? IconButton(
                     icon: obscureText
