@@ -1,0 +1,41 @@
+name: Flutter CI-CD Pipeline
+
+on:
+  push:
+    branches: [ "development", "master"]
+  pull_request:
+    branches: [ "development", "master"]
+
+jobs:
+  build_apk:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      - name: Set up Java JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Set up Flutter SDK
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run Build Runner
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
+      - name: Build Android Release APK
+        run: flutter build apk --release --no-tree-shake-icons
+
+      - name: Upload Build Artifact (APK)
+        uses: actions/upload-artifact@v4
+        with:
+          name: cure-app-release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk

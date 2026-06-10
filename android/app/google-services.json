@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "510704844322",
+    "project_id": "cure-task",
+    "storage_bucket": "cure-task.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:510704844322:android:ee4749cadb32ef576bd47b",
+        "android_client_info": {
+          "package_name": "com.example.cure_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCArND5NhHq8gypvCSdDnZBlb8g56LhR2w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
