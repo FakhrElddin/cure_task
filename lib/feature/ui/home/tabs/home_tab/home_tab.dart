@@ -18,8 +18,8 @@ class HomeTab extends StatelessWidget {
   final List<String> categories = const [
     'Nursing',
     'Elderly Care',
+    'Wound Dressing',
     'Physiotherapy',
-    'Wound Care',
   ];
   HomeTabCubit viewModel = getIt<HomeTabCubit>()..getServices();
   @override
@@ -66,20 +66,33 @@ class HomeTab extends StatelessWidget {
                         Text('Categories', style: AppStyles.semiBold24Text),
                         SizedBox(height: 30.h),
                         SizedBox(
-                          height: 80.h,
+                          height: 90.h,
                           child: ListView.separated(
                             scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) => Container(
-                              height: 80.h,
-                              width: 150.w,
-                              decoration: BoxDecoration(
-                                color: AppColors.primaryColor,
-                                borderRadius: BorderRadius.circular(10.r),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  categories[index],
-                                  style: AppStyles.semiBold20Text,
+                            itemBuilder: (context, index) => GestureDetector(
+                              onTap: (){
+                                Navigator.pushNamed(
+                                  context,
+                                  AppRoutes.serviceDetailsRoute,
+                                  arguments:
+                                  state.servicesResponseEntity[index],
+                                );
+                              },
+                              child: Container(
+                                height: 90.h,
+                                constraints: BoxConstraints(
+                                  minWidth: 160,
+                                ),
+                                padding: EdgeInsets.symmetric(horizontal: 16,),
+                                decoration: BoxDecoration(
+                                  color: AppColors.primaryColor,
+                                  borderRadius: BorderRadius.circular(10.r),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    categories[index],
+                                    style: AppStyles.semiBold20Text,
+                                  ),
                                 ),
                               ),
                             ),
@@ -100,7 +113,6 @@ class HomeTab extends StatelessWidget {
                   SliverList.separated(
                     itemCount: state.servicesResponseEntity.length,
                     itemBuilder: (context, index) => Stack(
-                      alignment: Alignment.center,
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(10.r),
@@ -112,11 +124,9 @@ class HomeTab extends StatelessWidget {
                           ),
                         ),
                         Positioned(
-                          top: 26.h,
                           left: 177.w,
                           right: 16.w,
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 state.servicesResponseEntity[index].name!,
@@ -134,29 +144,33 @@ class HomeTab extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(height: 14.h),
-                              ElevatedButton(
-                                onPressed: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    AppRoutes.serviceDetailsRoute,
-                                    arguments:
-                                        state.servicesResponseEntity[index],
-                                  );
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: AppColors.primaryColor,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50.r),
+                              Row(
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.pushNamed(
+                                        context,
+                                        AppRoutes.serviceDetailsRoute,
+                                        arguments:
+                                            state.servicesResponseEntity[index],
+                                      );
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: AppColors.primaryColor,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(50.r),
+                                      ),
+                                    ),
+                                    child: Text(
+                                      'Book',
+                                      style: AppStyles.regular16Text,
+                                    ),
                                   ),
-                                  padding: EdgeInsets.symmetric(
-                                    vertical: 6.h,
-                                    horizontal: 22.5,
+                                  SizedBox(
+                                    width: 4,
                                   ),
-                                ),
-                                child: Text(
-                                  'Book for ${state.servicesResponseEntity[index].price} EGP',
-                                  style: AppStyles.regular16Text,
-                                ),
+                                  Text('${state.servicesResponseEntity[index].price} EGP'),
+                                ],
                               ),
                             ],
                           ),

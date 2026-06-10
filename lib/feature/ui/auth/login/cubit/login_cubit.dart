@@ -9,12 +9,8 @@ class LoginCubit extends Cubit<LoginStates> {
   LoginCubit({required this.loginUseCase}) : super(LoginInitState());
   LoginUseCase loginUseCase;
   final GlobalKey<FormState> formKey = GlobalKey();
-  TextEditingController emailController = TextEditingController(
-    text: 'conas@nuitx.com',
-  );
-  TextEditingController passwordController = TextEditingController(
-    text: 'Ahmed@123',
-  );
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   void login() async {
     if (formKey.currentState!.validate()) {
