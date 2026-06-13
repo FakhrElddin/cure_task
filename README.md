@@ -31,7 +31,7 @@ To see the application in action, including UI navigation, offline mode demonstr
 ### Prerequisites
 * Flutter SDK
 * Dart SDK
-* A physical device or emulator for testing Firebase Push Notifications.
+* A physical device or emulator.
 
 ### Installation
 
