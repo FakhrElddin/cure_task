@@ -1,17 +1,40 @@
-# cure_app
+# Cure - Home Care Nursing App 🩺
 
-A new Flutter project.
+A robust Flutter application designed to facilitate home-care nursing services, allowing users to seamlessly browse, book, and manage medical services. The project is built with a strong emphasis on scalable software design, offline-first capabilities, and automated workflows.
 
-## Getting Started
+## ✨ Key Features
 
-This project is a starting point for a Flutter application.
+* **Service Booking:** Intuitive user interface for exploring and booking home-care nursing services.
+* **Offline-First Experience:** Reliable access to essential app data and cached states even without an internet connection.
+* **Push Notifications:** Real-time updates and device-level alerts integrated seamlessly.
+* **Automated Workflows:** Continuous Integration and Continuous Deployment (CI/CD) pipelines to ensure code stability.
 
-A few resources to get you started if this is your first Flutter project:
+## 🏗 Architecture & Tech Stack
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+This project strictly adheres to **Clean Architecture** principles to ensure separation of concerns, high testability, and long-term maintainability.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* **Framework:** Flutter / Dart
+* **State Management:** BLoC (Business Logic Component)
+* **Networking & API:** Dio
+* **Local Storage (Caching):** Hive
+* **Cloud Services:** Firebase Cloud Messaging (FCM)
+* **CI/CD:** GitHub Actions
+
+## 🎥 Project Demo
+
+To see the application in action, including UI navigation, offline mode demonstrations, and booking workflows, please watch the demo video:
+
+🔗 **[Click here to watch the demo video](https://drive.google.com/drive/folders/1EtUXLL43jX-dROAeYa6VogJ4XHtYcf4n?usp=sharing)**
+
+## 🚀 Getting Started
+
+### Prerequisites
+* Flutter SDK
+* Dart SDK
+* A physical device or emulator for testing Firebase Push Notifications.
+
+### Installation
+
+1. Clone the repository:
+```bash
+   git clone [https://github.com/FakhrElddin/cure_task.git](https://github.com/FakhrElddin/cure_task.git)
